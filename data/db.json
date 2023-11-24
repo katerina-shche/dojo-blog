@@ -1,0 +1,24 @@
+{
+    "posts": [
+        {
+            "id": 1,
+            "title": "welcome to the new blog",
+            "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui eaque tempora soluta esse, saepe alias dicta temporibus dolor necessitatibus similique voluptatum praesentium non architecto earum? Voluptatem cumque accusantium sit fugit nostrum officiis labore facilis corporis ad dolorem quam explicabo vitae nulla alias quos, reprehenderit nisi. Quaerat alias inventore corporis esse ullam, velit quisquam et tenetur, quod ducimus omnis officia harum unde praesentium quibusdam minima? Fuga a saepe, voluptas cumque accusantium sapiente quam maiores sit laborum commodi tempore quis quaerat praesentium obcaecati aperiam ex? Qui tenetur explicabo temporibus quos laboriosam nesciunt, rerum nobis esse sunt! Eius omnis cum perferendis architecto pariatur?",
+            "tags": [
+                "webdev",
+                "coding",
+                "news"
+            ]
+        },
+        {
+            "id": 2,
+            "title": "top 5 CSS tips",
+            "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui eaque tempora soluta esse, saepe alias dicta temporibus dolor necessitatibus similique voluptatum praesentium non architecto earum? Voluptatem cumque accusantium sit fugit nostrum officiis labore facilis corporis ad dolorem quam explicabo vitae nulla alias quos, reprehenderit nisi. Quaerat alias inventore corporis esse ullam, velit quisquam et tenetur, quod ducimus omnis officia harum unde praesentium quibusdam minima? Fuga a saepe, voluptas cumque accusantium sapiente quam maiores sit laborum commodi tempore quis quaerat praesentium obcaecati aperiam ex? Qui tenetur explicabo temporibus quos laboriosam nesciunt, rerum nobis esse sunt! Eius omnis cum perferendis architecto pariatur?",
+            "tags": [
+                "webdev",
+                "css",
+                "coding"
+            ]
+        }
+    ]
+}
