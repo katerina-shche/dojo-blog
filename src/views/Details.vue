@@ -3,16 +3,27 @@
   <div v-if='post' class='post'>
     <h3>{{ post.title }}</h3>
     <p class='pre'>{{ post.body }}</p>
+    <span v-for='tag in post.tags' :key='tag'>
+      <router-link :to='{ name: "Tag", params: {tag: tag} }'>
+        #{{ tag }}
+      </router-link>
+    </span>
   </div>
-  <div v-else>Loading post...</div>
+  <div v-else><Spinner /></div>
 </template>
 
 <script>
 import getPost  from '../composables/getPost'
+import Spinner from '../components/Spinner.vue'
+import { useRoute } from 'vue-router'
+
 export default {
     props: ['id'],
+    components: { Spinner },
     setup(props) {
-        const { post, error, load } = getPost(props.id)
+        const route = useRoute()
+        console.log(route)
+        const { post, error, load } = getPost(route.params.id)
         load()
         return { post, error }
     }
