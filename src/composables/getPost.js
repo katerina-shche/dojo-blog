@@ -1,4 +1,15 @@
 import { ref } from 'vue'
+import { projectFirestore } from '../firebase/config'
+import {
+  collection, 
+  getDocs,
+  onSnapshot,
+  getDoc, doc,
+  // addDoc, deleteDoc,
+  // query, where,
+  // orderBy, serverTimestamp,
+  // updateDoc
+} from 'firebase/firestore'
 
 const getPost = (id) => {
     const post = ref(null)
@@ -6,12 +17,19 @@ const getPost = (id) => {
 
     const load = async () => {
       try {
-        let data = await fetch('http://localhost:3000/posts/' + id)
-        console.log(data)
-        if (!data.ok) {
-          throw Error('that post does not exist')
-        }
-        post.value = await data.json()
+        const docRef = doc(projectFirestore, 'posts', id)
+        
+        const unsubDoc = onSnapshot(docRef, (doc) => {
+          if (!doc.exists()) {
+            throw new Error("That post does not exist")
+          } 
+          post.value = { ...doc.data(), id: doc.id} },
+          (err) => {
+            // Handle the error from onSnapshot
+            error.value = err.message
+            console.error(error.value)
+          })
+         
       }
       catch (err) {
         error.value = err.message
