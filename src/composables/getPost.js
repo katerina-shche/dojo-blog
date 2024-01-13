@@ -18,17 +18,19 @@ const getPost = (id) => {
     const load = async () => {
       try {
         const docRef = doc(projectFirestore, 'posts', id)
-        
-        const unsubDoc = onSnapshot(docRef, (doc) => {
+        getDoc(docRef)
+        .then(doc => {
           if (!doc.exists()) {
-            throw new Error("That post does not exist")
-          } 
-          post.value = { ...doc.data(), id: doc.id} },
-          (err) => {
-            // Handle the error from onSnapshot
-            error.value = err.message
-            console.error(error.value)
-          })
+            throw new Error('Sorry, but it seems: this post does not exist ;(')
+          }
+        })
+       .catch(err => {console.log(err.message)
+        error.value = err.message
+       })
+
+        const unsubDoc = onSnapshot(docRef, (doc) => {
+          post.value = { ...doc.data(), id: doc.id}
+        })
          
       }
       catch (err) {

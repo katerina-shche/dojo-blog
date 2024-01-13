@@ -24,6 +24,19 @@ import { ref } from 'vue'
 
 import { useRouter } from 'vue-router'
 
+import { projectFirestore } from '../firebase/config'
+import {
+  collection, 
+  //getDocs,
+  //onSnapshot,
+  getDoc, doc,
+  addDoc, 
+  //deleteDoc,
+  // query, where,
+  // orderBy, serverTimestamp,
+  // updateDoc
+} from 'firebase/firestore'
+
 export default {
   setup() {
     const title = ref('')
@@ -33,7 +46,8 @@ export default {
 
     const router = useRouter()
     
-    
+    // collection ref
+  const colRef = collection(projectFirestore, 'posts')
 
     const handleKeydown = () => {
       if (!tags.value.includes(tag.value)) {
@@ -45,17 +59,13 @@ export default {
 
     const handleSubmit = async () => {
       const post = {
-        id: Math.floor(Math.random() * 10000),
         title: title.value,
         body: body.value,
         tags: tags.value
       }
 
-      await fetch('http://localhost:3000/posts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify(post)
-      })
+      addDoc(colRef, post)
+      .then(res => getDoc(res).then(doc => console.log('respons is', doc.data(), doc.id)))
       router.push({ name: 'Home' })
     }
 
