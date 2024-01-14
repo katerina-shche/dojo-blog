@@ -5,8 +5,10 @@ import {
   getDocs,
   onSnapshot,
   // addDoc, deleteDoc, doc,
-  // query, where,
-  // orderBy, serverTimestamp,
+  query, 
+  // where,
+  orderBy,
+  //serverTimestamp,
   // getDoc, updateDoc
 } from 'firebase/firestore'
 
@@ -17,6 +19,7 @@ const getPosts = () => {
     const load = async () => {
       try {
         const colRef = collection(projectFirestore, 'posts')
+        const colQuery = query(colRef, orderBy('createdAt', 'desc'))
         // const res = getDocs(colRef)
         // .then((snapshot) => {
         //       snapshot.docs.forEach((doc) => {
@@ -25,7 +28,7 @@ const getPosts = () => {
         //       console.log(posts)
         //     })
 
-          const unsubCol = onSnapshot(colRef, (snapshot) => {
+          const unsubCol = onSnapshot(colQuery, (snapshot) => {
             let newPosts = []
             snapshot.docs.forEach((doc) => {
               newPosts.push({ ...doc.data(), id: doc.id })

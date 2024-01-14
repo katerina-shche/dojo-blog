@@ -33,7 +33,8 @@ import {
   addDoc, 
   //deleteDoc,
   // query, where,
-  // orderBy, serverTimestamp,
+  // orderBy,
+  serverTimestamp,
   // updateDoc
 } from 'firebase/firestore'
 
@@ -48,6 +49,7 @@ export default {
     
     // collection ref
   const colRef = collection(projectFirestore, 'posts')
+  
 
     const handleKeydown = () => {
       if (!tags.value.includes(tag.value)) {
@@ -61,7 +63,8 @@ export default {
       const post = {
         title: title.value,
         body: body.value,
-        tags: tags.value
+        tags: tags.value,
+        createdAt: serverTimestamp()
       }
 
       addDoc(colRef, post)
