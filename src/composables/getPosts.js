@@ -29,6 +29,8 @@ const getPosts = () => {
         //     })
 
           const unsubCol = onSnapshot(colQuery, (snapshot) => {
+            console.log('snapshot is:', snapshot)
+            console.log('snapshot is empty:', snapshot.empty)
             let newPosts = []
             snapshot.docs.forEach((doc) => {
               newPosts.push({ ...doc.data(), id: doc.id })

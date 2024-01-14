@@ -29,6 +29,8 @@ const getPost = (id) => {
        })
 
         const unsubDoc = onSnapshot(docRef, (doc) => {
+          console.log('doc snap is:', doc)
+          
           post.value = { ...doc.data(), id: doc.id}
         })
          
